@@ -18,5 +18,5 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 });
 
 Broadcast::channel('room.{id}', function ($user, $id) {
-    return true; // user có thể join vào bất kì chatroom nào
+    return $user;
 });

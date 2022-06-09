@@ -33,6 +33,6 @@ class MessagePosted implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('room.'.$this->message->room);
+        return new PresenceChannel('room.'.$this->message->room);
     }
 }
