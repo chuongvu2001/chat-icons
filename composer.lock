@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "69600555dab15b521c5e5e9dc2d3e20d",
+    "content-hash": "0a45c2dd6fbff99b745e655a00284880",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1394,6 +1394,57 @@
                 }
             ],
             "time": "2022-04-17T13:12:02+00:00"
+        },
+        {
+            "name": "marufmax/emoticon-php",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/marufmax/emoticon-php.git",
+                "reference": "4061baf68a281314ae5bd0d60ddbd3f65da3e078"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/marufmax/emoticon-php/zipball/4061baf68a281314ae5bd0d60ddbd3f65da3e078",
+                "reference": "4061baf68a281314ae5bd0d60ddbd3f65da3e078",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^6.5.14"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MarufMax\\Emoticon\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maruf Alom",
+                    "email": "desk.maruf@gmail.com",
+                    "homepage": "http://marufalom.com"
+                }
+            ],
+            "description": "An Elegant Emoji/Emoticon package for PHP",
+            "homepage": "https://github.com/marufmax/emoticon-php",
+            "keywords": [
+                "emoji",
+                "emoticon",
+                "php-emoji",
+                "simily-php"
+            ],
+            "support": {
+                "issues": "https://github.com/marufmax/emoticon-php/issues",
+                "source": "https://github.com/marufmax/emoticon-php/tree/1.0.1"
+            },
+            "time": "2020-01-27T18:32:29+00:00"
         },
         {
             "name": "monolog/monolog",

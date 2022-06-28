@@ -1,64 +1,130 @@
 <template>
-  <div class="card">
-    <div class="card-header msg_head">
-      <div class="bd-highlight">
-        <div class="user_info">
-          <span>{{ currentRoom.name }}</span>
+    <div class="card">
+        <div class="card-header msg_head">
+            <div class="bd-highlight">
+                <div class="user_info">
+                    <span>{{ currentRoom.name }}</span>
+                </div>
+                <div class="text-white ml-3">
+                    {{ currentRoom.description }}
+                </div>
+            </div>
         </div>
-        <div class="text-white ml-3">
-          {{ currentRoom.description }}
+        <div class="card-body msg_card_body" id="shared_room">
+            <MessageItem v-for="message in messages" :key="message.id" :message="message"/>
         </div>
-      </div>
-    </div>
-    <div class="card-body msg_card_body" id="shared_room">
-      <MessageItem v-for="message in messages" :key="message.id" :message="message" />
-    </div>
-    <div class="card-footer">
-      <div class="input-group">
-        <textarea
-          v-model="inputMessage"
-          name=""
-          class="form-control type_msg"
-          placeholder="Type your message..."
-          @keyup.enter="saveMessage"
-        />
-        <div class="input-group-append">
-          <span class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></span>
+        <div class="card-footer">
+            <div class="input-group">
+                <div class="dropdown">
+                    <button class="dropbtn">&#128512;</button>
+                    <div class="dropdown-content" id="drop-content">
+                    </div>
+                </div>
+                <textarea
+                    v-model="inputMessage"
+                    name=""
+                    class="form-control type_msg"
+                    data-emoji-input="unicode"
+                    placeholder="Type your message...aaa"
+                    data-emojiable="true"
+                    @keyup.enter="saveMessage"
+                    v-on:change="checkIcon"
+                    ref="icon"
+                />
+                <div class="input-group-append">
+                    <span class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></span>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </template>
 
 <script>
 import MessageItem from './MessageItem'
+
 export default {
-  props: {
-    messages: {
-      type: Array,
-      required: true
+    props: {
+        messages: {
+            type: Array,
+            required: true
+        },
+        currentRoom: {
+            type: Object,
+            required: true
+        }
     },
-    currentRoom: {
-      type: Object,
-      required: true
+    components: {
+        MessageItem
+    },
+    data() {
+        return {
+            inputMessage: '',
+            icons: ''
+        }
+    },
+    methods: {
+        saveMessage() {
+            this.$emit('saveMessage', this.inputMessage)
+            this.inputMessage = ''
+        },
+        checkIcon() {
+            axios.post('/api/check-icon', {
+
+                content: this.inputMessage,
+
+            }).then(function (response) {
+                this.icons = response.data;
+                document.getElementById('drop-content').innerHTML = "";
+                for (const [key, value] of Object.entries(response.data)) {
+                    document.getElementById('drop-content').innerHTML
+                        +=
+                        `<a href=\"#\">${value} :${key}:</a>`
+                }
+            }.bind(this));
+        }
     }
-  },
-  components: {
-    MessageItem
-  },
-  data () {
-    return {
-      inputMessage: ''
-    }
-  },
-  methods: {
-    saveMessage () {
-      this.$emit('saveMessage', this.inputMessage)
-      this.inputMessage = ''
-    }
-  }
 }
 </script>
 
 <style>
+.dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
 </style>

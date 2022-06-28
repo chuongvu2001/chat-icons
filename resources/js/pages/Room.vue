@@ -8,9 +8,9 @@
             />
         </div>
         <div class="col-md-4 chat">
-          <ListUser
-            :usersOnline="usersOnline"
-          />
+            <ListUser
+                :usersOnline="usersOnline"
+            />
         </div>
     </div>
 </template>
@@ -32,7 +32,7 @@ export default {
             usersOnline: []
         }
     },
-    created () {
+    created() {
         this.getMessages()
 
         const index = this.$root.rooms.findIndex(item => item.id === parseInt(this.$route.params.roomId))
@@ -60,7 +60,7 @@ export default {
         }
     },
 
-    beforeDestroy () {
+    beforeDestroy() {
         // huỷ lắng nghe tin nhắn ở chatroom hiện tại
         // nếu như user chuyển qua route/chatroom khác
         Echo.leave(`room.${this.currentRoom.id}`)

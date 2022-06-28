@@ -6,21 +6,21 @@ import Room from './pages/Room'
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/',
-    name: 'list.room',
-    component: ListRoom
-  },
-  {
-    path: '/rooms/:roomId',
-    name: 'room',
-    component: Room
-  }
+    {
+        path: '/',
+        name: 'list.room',
+        component: ListRoom
+    },
+    {
+        path: '/rooms/:roomId',
+        name: 'room',
+        component: Room
+    }
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  routes
+    mode: 'history',
+    routes
 })
 
 export default router
