@@ -42,7 +42,7 @@ class Message extends Model
 
         $string = implode(",", $keys);
 
-        $data = explode(":", $arr[0]);
+        $data = explode(":", end($arr));
 
         $icons = [];
 

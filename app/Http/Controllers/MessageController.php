@@ -25,7 +25,9 @@ class MessageController extends Controller
         $message = new Message();
         $message->room = $request->input('room', '');
         $message->sender = Auth::user()->id;
-        $message->content = $request->input('content', '') . $emoji->emojify('I like :heart:');
+        $message->content = $request->input('content', '')
+//            . $emoji->emojify('I like :heart:')
+        ;
 
         $message->save();
         broadcast(new MessagePosted($message->load('sender')))->toOthers();

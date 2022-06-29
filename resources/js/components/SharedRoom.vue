@@ -67,23 +67,30 @@ export default {
             this.$emit('saveMessage', this.inputMessage)
             this.inputMessage = ''
         },
-        checkIcon() {
-            axios.post('/api/check-icon', {
-
+        async checkIcon() {
+            const response = await axios.post('/api/check-icon', {
                 content: this.inputMessage,
+            });
 
-            }).then(function (response) {
-                this.icons = response.data;
-                document.getElementById('drop-content').innerHTML = "";
-                for (const [key, value] of Object.entries(response.data)) {
-                    document.getElementById('drop-content').innerHTML
-                        +=
-                        `<a href=\"#\">${value} :${key}:</a>`
-                }
-            }.bind(this));
+            this.icons = response.data;
+            document.getElementById('drop-content').innerHTML = "";
+            for (const [key, value] of Object.entries(response.data)) {
+                document.getElementById('drop-content').innerHTML
+                    +=
+                    `<a href="javascript:;" class="icon">${value}:${key}:</a>`
+            }
+
+            let icons = document.querySelectorAll('.icon');
+            [...icons].map(icon => icon.addEventListener('click', () => {
+                let msg = this.inputMessage;
+                msg += icon.innerHTML;
+                msg = msg.replaceAll(/\:[a-zA-Z\-\_]+\:?/g, '');
+                this.inputMessage = msg;
+            }));
         }
     }
 }
+// icons.map(item => console.log(item));
 </script>
 
 <style>
