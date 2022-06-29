@@ -25,7 +25,7 @@
                     name=""
                     class="form-control type_msg"
                     data-emoji-input="unicode"
-                    placeholder="Type your message...aaa"
+                    placeholder="Type your message..."
                     data-emojiable="true"
                     @keyup.enter="saveMessage"
                     v-on:change="checkIcon"

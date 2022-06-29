@@ -11505,7 +11505,7 @@ var render = function() {
           attrs: {
             name: "",
             "data-emoji-input": "unicode",
-            placeholder: "Type your message...aaa",
+            placeholder: "Type your message...",
             "data-emojiable": "true"
           },
           domProps: { value: _vm.inputMessage },
