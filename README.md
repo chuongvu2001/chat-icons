@@ -20,4 +20,4 @@ You can try my demo here: https://realtime-chat.jamesisme.com/
    - http
    - yes
    - No
-   - laravel-echo-server.json
+   - laravel-echo-server start
