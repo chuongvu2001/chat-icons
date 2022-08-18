@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/detect', function () {
+    $string = Emoji\Detect\replace_emoji('I like 🌮 and 😠👵🤴🤴💁🙍💆💇💇', ':', ':');
+    echo $string;
+});
 Auth::routes();
 
 Route::get('/', 'AppController@index')->middleware('auth');

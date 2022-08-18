@@ -8,11 +8,13 @@ You can try my demo here: https://realtime-chat.jamesisme.com/
 ### Config and run install
 1. php 7.x
 2. composer install
-3. php artisan key:generate
-4. php artisan migrate --seed
-5. npm install
-6. npm i laravel-echo-server
-7. laravel-echo-server init
+3. cp .env.example .env
+4. php artisan key:generate
+5. composer dump-autoload
+6. php artisan migrate --seed
+7. npm install
+8. npm i laravel-echo-server
+9. laravel-echo-server init
    - yes
    - 6001
    - redis
