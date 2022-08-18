@@ -1,10 +1,10 @@
 {
-	"authHost": "http://127.0.0.1:8000",
+	"authHost": "http://localhost:8000",
 	"authEndpoint": "/broadcasting/auth",
 	"clients": [
 		{
-			"appId": "1279faa225d58be4",
-			"key": "1f984240130fd526cdf2e8948c6a7608"
+			"appId": "2377a004029502d4",
+			"key": "d89f650ba05550dc8afcf0514ba5c4a8"
 		}
 	],
 	"database": "redis",
