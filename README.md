@@ -11,7 +11,7 @@ You can try my demo here: https://realtime-chat.jamesisme.com/
 3. php artisan key:generate
 4. php artisan migrate --seed
 5. npm install
-6. npm install --save laravel-echo
+6. npm i laravel-echo-server
 7. laravel-echo-server init
    - yes
    - 6001
