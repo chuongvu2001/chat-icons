@@ -4,7 +4,7 @@ namespace Emoji\Detect;
 
 define('LONGEST_EMOJI', 8);
 if (!function_exists('detect_emoji')) {
-    function detect_emoji($string): array
+    function detect_emoji($string)
     {
         // Find all the emoji in the input string
 
@@ -27,7 +27,9 @@ if (!function_exists('detect_emoji')) {
             foreach ($matches[0] as $match) {
                 $ch = $match[0];
                 $offset = $match[1] - $emojisLength;
+                //Tìm vị trí xuất hiện đầu tiên
                 $mbOffset = mb_strpos($string, $ch, $lastMbOffset);
+                //Lấy độ dài chuỗi
                 $mbLength = mb_strlen($ch);
                 $lastMbOffset = $offset + $mbLength;
                 $emojisLength += (strlen($ch) - 1);
@@ -36,10 +38,10 @@ if (!function_exists('detect_emoji')) {
                     $points[] = strtoupper(dechex(uniord(mb_substr($ch, $i, 1))));
                 }
 
-                $hexStr = implode('-', $points);
+                $hexstr = implode('-', $points);
 
-                if (array_key_exists($hexStr, $map)) {
-                    $short_name = $map[$hexStr];
+                if (array_key_exists($hexstr, $map)) {
+                    $short_name = $map[$hexstr];
                 } else {
                     $short_name = null;
                 }
@@ -62,7 +64,7 @@ if (!function_exists('detect_emoji')) {
                     'short_name' => $short_name,
                     'num_points' => mb_strlen($ch),
                     'points_hex' => $points,
-                    'hex_str' => $hexStr,
+                    'hex_str' => $hexstr,
                     'skin_tone' => $skin_tone,
                     'offset' => $offset,
                     'mb_offset' => $mbOffset,
@@ -70,7 +72,6 @@ if (!function_exists('detect_emoji')) {
                 );
             }
         }
-
         if ($prevencoding)
             mb_internal_encoding($prevencoding);
 
