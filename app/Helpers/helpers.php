@@ -4,7 +4,7 @@ namespace Emoji\Detect;
 
 define('LONGEST_EMOJI', 8);
 if (!function_exists('detect_emoji')) {
-    function detect_emoji($string)
+    function detect_emoji($string): array
     {
         // Find all the emoji in the input string
 
@@ -36,10 +36,10 @@ if (!function_exists('detect_emoji')) {
                     $points[] = strtoupper(dechex(uniord(mb_substr($ch, $i, 1))));
                 }
 
-                $hexstr = implode('-', $points);
+                $hexStr = implode('-', $points);
 
-                if (array_key_exists($hexstr, $map)) {
-                    $short_name = $map[$hexstr];
+                if (array_key_exists($hexStr, $map)) {
+                    $short_name = $map[$hexStr];
                 } else {
                     $short_name = null;
                 }
@@ -62,7 +62,7 @@ if (!function_exists('detect_emoji')) {
                     'short_name' => $short_name,
                     'num_points' => mb_strlen($ch),
                     'points_hex' => $points,
-                    'hex_str' => $hexstr,
+                    'hex_str' => $hexStr,
                     'skin_tone' => $skin_tone,
                     'offset' => $offset,
                     'mb_offset' => $mbOffset,
