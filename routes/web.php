@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/detect', function () {
-    $string = Emoji\Detect\replace_emoji('I like 🌮 and 😠👵🤴🤴💁🙍💆💇💇', ':', ':');
+    $string = Emoji\Detect\replace_emoji('I like 🌮 and 👵🤴🤴💁🙍💆💇💇', ':', ':');
     echo $string;
 });
 Auth::routes();

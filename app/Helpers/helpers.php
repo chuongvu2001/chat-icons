@@ -72,13 +72,12 @@ if (!function_exists('detect_emoji')) {
                     'skin_tone' => $skin_tone,
                     'offset' => $offset,
                     'mb_offset' => $mbOffset,
-//                    'mb_length' => $mbLength
+                    'mb_length' => $mbLength
                 );
             }
         }
         if ($prevencoding)
             mb_internal_encoding($prevencoding);
-dd($data);
         return $data;
     }
 }
