@@ -14,13 +14,14 @@ if (!function_exists('detect_emoji')) {
         $data = array();
 
         static $map;
+        //Maps json
         if (!isset($map))
             $map = _load_map();
 
         static $regexp;
         if (!isset($regexp))
             $regexp = _load_regexp();
-
+        //So sanh khop tat ca gia tri
         if (preg_match_all($regexp, $string, $matches, PREG_OFFSET_CAPTURE)) {
             $emojisLength = 0;
             $lastMbOffset = 0;
@@ -34,12 +35,15 @@ if (!function_exists('detect_emoji')) {
                 $lastMbOffset = $offset + $mbLength;
                 $emojisLength += (strlen($ch) - 1);
                 $points = array();
+
+                //Regex string
                 for ($i = 0; $i < $mbLength; $i++) {
                     $points[] = strtoupper(dechex(uniord(mb_substr($ch, $i, 1))));
                 }
 
                 $hexstr = implode('-', $points);
 
+                //Check key tồn tại
                 if (array_key_exists($hexstr, $map)) {
                     $short_name = $map[$hexstr];
                 } else {
@@ -68,13 +72,13 @@ if (!function_exists('detect_emoji')) {
                     'skin_tone' => $skin_tone,
                     'offset' => $offset,
                     'mb_offset' => $mbOffset,
-                    'mb_length' => $mbLength
+//                    'mb_length' => $mbLength
                 );
             }
         }
         if ($prevencoding)
             mb_internal_encoding($prevencoding);
-
+dd($data);
         return $data;
     }
 }
